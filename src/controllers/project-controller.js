@@ -6,7 +6,7 @@ export const getAllProject = async (req, res) => {
     const data = await pool.query('SELECT * FROM todo');
     const rows = data.rows
     console.log(rows)
-    return res.status(200).json({rows});
+    return res.status(200).json(rows);
   } catch (error) {}
 };
 
