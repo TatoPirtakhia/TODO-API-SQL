@@ -48,6 +48,7 @@ export const updateStatus = async (req, res) => {
 
 export const deleteTodo = async (req, res) => {
   const { id } = req.body;
+  console.log(id)
   try {
     await pool.query("DELETE FROM todo WHERE id = $1", [id]);
     return res.status(200).json({ message: "dELETE successfully" });
