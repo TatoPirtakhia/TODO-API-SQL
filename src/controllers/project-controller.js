@@ -22,10 +22,11 @@ export const addNewTitle = async (req, res) => {
   }
 
   const { title, status } = value;
+
+  console.log(title,status)
  
   try {
     const resultQuery = await pool.query('INSERT INTO TODO(title,status) VALUES($1,$2)',[title, status])
-    console.log(resultQuery.rows)
     return res.status(201).json(resultQuery.rows);
   } catch (error) {
     return res.status(401).json(error);
