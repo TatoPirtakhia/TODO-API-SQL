@@ -1,11 +1,11 @@
 import express from 'express'
-import {getAllProject } from '../controllers/project-controller.js';
+import {addNewTitle, getAllProject } from '../controllers/project-controller.js';
 
 const todoRouter = express.Router()
 
 todoRouter.get('/all',getAllProject)
 
-// todoRouter.post('/title',addNewTitle)
+todoRouter.post('/title',addNewTitle)
 
 // todoRouter.put('/updateStatus',updateStatus)
 
