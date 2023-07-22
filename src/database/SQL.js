@@ -1,11 +1,11 @@
-import pgk, { Pool } from 'pg'
-
+import pgk from 'pg'
+const {Pool} = pgk
 const pool = new Pool({
-    host:'',
-    port:'',
-    database:"",
-    user:'',
-    password:'',
+    host:process.env.MYSQLHOST,
+    port:process.env.MYSQLPORT,
+    database:process.env.MYSQLDATABASE,
+    user:process.env.MYSQLUSER,
+    password:process.env.MYSQLPASSWORD,
 })
 
 
