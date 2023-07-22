@@ -3,11 +3,13 @@ import pool from "../database/SQL.js";
 
 export const getAllProject = async (req, res) => {
   try {
-    const data = await pool.query('SELECT * FROM todo');
+    const data = await pool.query('SELECT * FROM todoApp');
     const rows = data.rows
     console.log(rows)
     return res.status(200).json(rows);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 // export const addNewTitle = async (req, res) => {
