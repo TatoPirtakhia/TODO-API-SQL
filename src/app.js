@@ -23,7 +23,7 @@ async function init() {
     app.use("/api", todoRouter);
     app.use("/", ...swaggerMiddleware());
     app.listen(process.env.PORT || 3001, () => {
-        console.log(`Server running on port ${PORT}`);
+        console.log(`Server running on port ${3001}`);
       });
   }
 }
