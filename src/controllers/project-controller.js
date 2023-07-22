@@ -46,13 +46,17 @@ export const updateStatus = async (req, res) => {
   
 };
 
-// export const deleteTodo = async (req, res) => {
-//   const { id } = req.params;
-//   const todo = await Project.findOne({ id: +id });
-//   await todo.deleteOne();
+export const deleteTodo = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query('DELETE FROM todo WHERE id = $1', [id]);
+    return res.status(200).json({ message: "status updated successfully" });
+  } catch (error) {
+    
+  }
 
-//   return res.status(200).json({ message: "todo deleted successfully" });
-// };
+  return res.status(200).json({ message: "todo deleted successfully" });
+};
 
 // export const deleteCompleted = async (req, res) => {
 
