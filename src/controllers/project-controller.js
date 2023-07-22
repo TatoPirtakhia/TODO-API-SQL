@@ -53,7 +53,7 @@ export const deleteTodo = async (req, res) => {
 export const deleteCompleted = async (req, res) => {
 
   try {
-    await pool.query("DELETE * FROM todo WHERE id = $1", [true]);
+    await pool.query("DELETE * FROM todo WHERE status = $1", [true]);
     return res.status(200).json({ message: "dELETE successfully" });
   } catch (error) {
     return res.status(500).json({ message: "An error occurred while DELETING the status" });
