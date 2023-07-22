@@ -3,7 +3,7 @@ import pool from "../database/SQL.js";
 
 export const getAllProject = async (req, res) => {
   try {
-    const data = await pool.query('SELECT * FROM todoApp');
+    const data = await pool.query('SELECT * FROM mycar');
     const rows = data.rows
     console.log(rows)
     return res.status(200).json(rows);
