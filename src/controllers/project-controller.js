@@ -5,7 +5,6 @@ export const getAllProject = async (req, res) => {
   try {
     const data = await pool.query("SELECT * FROM TODO");
     const rows = data.rows;
-    console.log(rows);
     return res.status(200).json(rows);
   } catch (error) {
     console.log(error);
@@ -47,20 +46,16 @@ export const updateStatus = async (req, res) => {
 };
 
 export const deleteTodo = async (req, res) => {
-  console.log('i am here')
   const { id } = req.body;
-  console.log(id)
+ 
+};
+
+export const deleteCompleted = async (req, res) => {
+
   try {
-    await pool.query("DELETE FROM todo WHERE id = $1", [id]);
+    await pool.query("DELETE * FROM todo WHERE id = $1", [true]);
     return res.status(200).json({ message: "dELETE successfully" });
   } catch (error) {
     return res.status(500).json({ message: "An error occurred while DELETING the status" });
   }
 };
-
-// export const deleteCompleted = async (req, res) => {
-
-//     await Project.deleteMany({ status: true });
-
-//   return res.status(200).json({ message: "completed deleted successfully" });
-// };

@@ -102,8 +102,6 @@ paths:
               properties:
                 status:
                   type: boolean
-            example:
-              status: true
       responses:
         "200":
           description: Completed deleted
