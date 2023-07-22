@@ -1,5 +1,5 @@
 import pool from "../database/SQL.js";
-// import addNewTitleSchema from "../schemas/addNewTitleSchema.js";
+import addNewTitleSchema from "../schemas/addNewTitleSchema.js";
 
 export const getAllProject = async (req, res) => {
   try {
