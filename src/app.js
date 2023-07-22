@@ -6,7 +6,7 @@ import swaggerMiddleware from "./middlewares/swager-middlewares.js";
 import cors from "cors";
 import { createTable } from "./database/SQL.js";
 const app = express();
-dotenv.config();
+
 
 async function init() {
   try {
