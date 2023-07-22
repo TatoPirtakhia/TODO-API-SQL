@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: todo
+  description: todo app API
+  version: 0.1.9
+
+servers:
+  - url: http://localhost:3001/api
+    description: local server
+  - url: https://todo-api-rsne.onrender.com/api
+    description: todo server
+
+paths:
+  /all:
+    get:
+      tags:
+        - todo
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /title:
+    post:
+      tags:
+        - todo
+      requestBody:
+        description: create todo
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                status:
+                  type: boolean           
+            example:
+              title: Node is awesome      
+              status: true
+      responses:
+        "200":
+          description: todo created
+  /updateStatus:
+    put:
+      tags:
+        - todo
+      requestBody:
+        description: update Status
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                status:
+                  type: boolean 
+            example:
+              id: 3
+              status: true
+      responses:
+        "200":
+          description: todo updated
+  /deleteTodo:
+    delete:
+      tags:
+        - todo
+      requestBody:
+        description: delete todo
+        required: true
+        content:
+          application/json:
+            schema:
+              type: number
+              properties:
+                id:
+                  type: number
+            example:
+              id: 3
+      responses:
+        "200":
+          description: todo deleted
+  /deleteCompleted:
+    delete:
+      tags:
+        - todo
+      requestBody:
+        description: delete Completed
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: boolean
+            example:
+              status: true
+      responses:
+        "200":
+          description: Completed deleted
