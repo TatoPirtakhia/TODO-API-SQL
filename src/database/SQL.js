@@ -8,6 +8,11 @@ const pool = new Pool({
     password:process.env.MYSQLPASSWORD,
 })
 
+export const createTable = async () => {
+    return await pool.query(
+      "CREATE TABLE IF NOT EXISTS todoApp(id SERIAL PRiMARY KEY, content TEXT)"
+    );
+  };
 
 export default pool
 

@@ -5,14 +5,25 @@ import todoRouter from "./routes/todo-routers.js";
 import swaggerMiddleware from "./middlewares/swager-middlewares.js";
 import cors from "cors";
 const app = express();
-dotenv.config();
 
-app.use(bodyParser.json());
 
-app.use(cors());
+async function init() {
+  try {
+    await createTable();
+    serverStart();
+  } catch (error) {
+    console.log(error);
+  }
 
-app.use("/api", cors(), todoRouter);
+  function serverStart() {
+    app.use(bodyParser.json());
+    app.use(cors());
 
-app.use("/", ...swaggerMiddleware());
+    app.use("/api", todoRouter);
+    app.use("/", ...swaggerMiddleware());
 
-app.listen(process.env.PORT || 3001);
+    app.listen(process.env.PORT || 3001);
+  }
+}
+
+init();
