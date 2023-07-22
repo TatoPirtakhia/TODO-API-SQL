@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import todoRouter from "./routes/todo-routers.js";
 import swaggerMiddleware from "./middlewares/swager-middlewares.js";
 import cors from "cors";
+import { createTable } from "./database/SQL.js";
 const app = express();
 
 
