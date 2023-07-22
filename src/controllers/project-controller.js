@@ -25,8 +25,8 @@ export const addNewTitle = async (req, res) => {
  
   try {
     const resultQuery = await pool.query('INSERT INTO TODO(title,status) VALUES($1,$2)',[title, status])
-    console.log(resultQuery)
-    return res.status(201).json('successfully created',resultQuery);
+    console.log(resultQuery.rows)
+    return res.status(201).json(resultQuery.rows);
   } catch (error) {
     return res.status(401).json(error);
   }
