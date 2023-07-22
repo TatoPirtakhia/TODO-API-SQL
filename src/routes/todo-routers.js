@@ -9,7 +9,7 @@ todoRouter.post('/title',addNewTitle)
 
 todoRouter.put('/updateStatus',updateStatus)
 
-todoRouter.delete('/deleteTodo/:id',deleteTodo)
+todoRouter.delete('/deleteTodo',deleteTodo)
 
 // todoRouter.delete('/deleteCompleted',deleteCompleted)
 
