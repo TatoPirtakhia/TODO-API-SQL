@@ -1,5 +1,5 @@
 import express from 'express'
-import { addNewTitle, deleteCompleted, deleteTodo, getAllProject, updateStatus } from '../controllers/project-controller.js';
+import {getAllProject } from '../controllers/project-controller.js';
 
 const todoRouter = express.Router()
 
