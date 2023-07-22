@@ -23,11 +23,11 @@ export const addNewTitle = async (req, res) => {
   const { title, status } = value;
 
   try {
-     await pool.query(
-      "INSERT INTO TODO(title,status) VALUES($1,$2)",
-      [title, status]
-    );
-    return res.status(201).json('successfully created');
+    await pool.query("INSERT INTO TODO(title,status) VALUES($1,$2)", [
+      title,
+      status,
+    ]);
+    return res.status(201).json("successfully created");
   } catch (error) {
     return res.status(401).json(error);
   }
@@ -35,27 +35,27 @@ export const addNewTitle = async (req, res) => {
 
 export const updateStatus = async (req, res) => {
   const { id, status } = req.body;
-  
+
   try {
-    await pool.query('UPDATE todo SET status = $1 WHERE id = $2', [status, id]);
+    await pool.query("UPDATE todo SET status = $1 WHERE id = $2", [status, id]);
     return res.status(200).json({ message: "status updated successfully" });
   } catch (error) {
-    return res.status(500).json({ message: "An error occurred while updating the status" });
+    return res
+      .status(500)
+      .json({ message: "An error occurred while updating the status" });
   }
-
-  
 };
 
 export const deleteTodo = async (req, res) => {
   const { id } = req.params;
   try {
-    await pool.query('DELETE FROM todo WHERE id = $1', [id]);
-    return res.status(200).json({ message: "status updated successfully" });
+    await pool.query("DELETE FROM todo WHERE id = $1", [id]);
+    return res.status(200).json({ message: "dELETE successfully" });
   } catch (error) {
-    
+    return res
+      .status(500)
+      .json({ message: "An error occurred while DELETING the status" });
   }
-
-  return res.status(200).json({ message: "todo deleted successfully" });
 };
 
 // export const deleteCompleted = async (req, res) => {
