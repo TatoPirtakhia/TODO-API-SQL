@@ -47,6 +47,7 @@ export const updateStatus = async (req, res) => {
 };
 
 export const deleteTodo = async (req, res) => {
+  console.log('i am here')
   const { id } = req.body;
   console.log(id)
   try {
