@@ -11,7 +11,7 @@ const pool = new Pool({
 
 export const createTable = async () => {
     return await pool.query(
-      "CREATE TABLE IF NOT EXISTS todoApp(id SERIAL PRiMARY KEY, content TEXT)"
+      "CREATE TABLE IF NOT EXISTS TODO(id SERIAL PRiMARY KEY, title TEXT, status BOOLEAN)"
     );
   };
 

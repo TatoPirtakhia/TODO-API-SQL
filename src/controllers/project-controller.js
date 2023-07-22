@@ -3,7 +3,7 @@ import pool from "../database/SQL.js";
 
 export const getAllProject = async (req, res) => {
   try {
-    const data = await pool.query('SELECT * FROM mycar');
+    const data = await pool.query('SELECT * FROM TODO');
     const rows = data.rows
     console.log(rows)
     return res.status(200).json(rows);
@@ -12,27 +12,27 @@ export const getAllProject = async (req, res) => {
   }
 };
 
-// export const addNewTitle = async (req, res) => {
-//   const validator = await addNewTitleSchema();
+export const addNewTitle = async (req, res) => {
+  const validator = await addNewTitleSchema();
 
-//   const { value, error } = validator.validate(req.body);
+  const { value, error } = validator.validate(req.body);
 
-//   if (error) {
-//     return res.status(401).json(error.details);
-//   }
+  if (error) {
+    return res.status(401).json(error.details);
+  }
 
-//   const { title, status } = value;
-//   const lassTitle = await Project.find().sort({ _id: -1 }).limit(1);
-//   const id = lassTitle.length > 0 ? lassTitle[0].id + 1 : 1;
-
-//   const Title = {
-//     title,
-//     id,
-//     status,
-//   };
-//   await Project.create({ ...Title });
-//   return res.status(201).json({ ...Title });
-// };
+  const { title, status } = value;
+ 
+  try {
+    const resultQuery = await pool.query('INSERT INTO TODO(title,status) VALUES($1,$2)',[title, status])
+    console.log(resultQuery)
+    return res.status(201).json('successfully created',resultQuery);
+  } catch (error) {
+    return res.status(401).json(error);
+  }
+ 
+  
+};
 
 // export const updateStatus = async (req, res) => {
 //   const { id, status } = req.body;
