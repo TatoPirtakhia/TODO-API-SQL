@@ -1,9 +1,12 @@
 import pgk from 'pg'
 const {Pool} = pgk
 
-const connect = process.env.Connect
 const pool = new Pool({
-    connect,
+    host:process.env.MYSQLHOST,
+    port:process.env.MYSQLPORT,
+    database:process.env.MYSQLDATABASE,
+    user:process.env.MYSQLUSER,
+    password:process.env.MYSQLPASSWORD,
 })
 
 export const createTable = async () => {
