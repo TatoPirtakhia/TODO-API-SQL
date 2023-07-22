@@ -1,5 +1,5 @@
 import express from 'express'
-import {addNewTitle, getAllProject } from '../controllers/project-controller.js';
+import {addNewTitle, getAllProject, updateStatus } from '../controllers/project-controller.js';
 
 const todoRouter = express.Router()
 
@@ -7,7 +7,7 @@ todoRouter.get('/all',getAllProject)
 
 todoRouter.post('/title',addNewTitle)
 
-// todoRouter.put('/updateStatus',updateStatus)
+todoRouter.put('/updateStatus',updateStatus)
 
 // todoRouter.delete('/deleteTodo/:id',deleteTodo)
 

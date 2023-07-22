@@ -3,12 +3,12 @@ import addNewTitleSchema from "../schemas/addNewTitleSchema.js";
 
 export const getAllProject = async (req, res) => {
   try {
-    const data = await pool.query('SELECT * FROM TODO');
-    const rows = data.rows
-    console.log(rows)
+    const data = await pool.query("SELECT * FROM TODO");
+    const rows = data.rows;
+    console.log(rows);
     return res.status(200).json(rows);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -20,32 +20,31 @@ export const addNewTitle = async (req, res) => {
   if (error) {
     return res.status(401).json(error.details);
   }
-
   const { title, status } = value;
 
-  console.log(title,status)
- 
   try {
-    const resultQuery = await pool.query('INSERT INTO TODO(title,status) VALUES($1,$2)',[title, status])
-    return res.status(201).json(resultQuery.rows);
+     await pool.query(
+      "INSERT INTO TODO(title,status) VALUES($1,$2)",
+      [title, status]
+    );
+    return res.status(201).json('successfully created');
   } catch (error) {
     return res.status(401).json(error);
   }
- 
-  
 };
 
-// export const updateStatus = async (req, res) => {
-//   const { id, status } = req.body;
-//   await Project.findOneAndUpdate(
-//     { id },
-//     {
-//       status,
-//     }
-//   );
+export const updateStatus = async (req, res) => {
+  const { id, status } = req.body;
+  
+  try {
+    await pool.query('UPDATE todo SET status = $1 WHERE id = $2', [status, id]);
+    return res.status(200).json({ message: "status updated successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: "An error occurred while updating the status" });
+  }
 
-//   return res.status(200).json({ message: "status updated successfully" });
-// };
+  
+};
 
 // export const deleteTodo = async (req, res) => {
 //   const { id } = req.params;
